@@ -11,16 +11,33 @@
   ],
   "routes": [
     {
-      "src": "/assets/(.*)",
-      "dest": "/frontend/assets/$1"
+      "src": "/sw.js",
+      "dest": "/sw.js",
+      "headers": { "Cache-Control": "public, max-age=0, must-revalidate" }
     },
     {
-      "src": "/(.*\\.(js|css|svg|ico|png|jpg|woff2?))",
-      "dest": "/frontend/$1"
+      "src": "/manifest.webmanifest",
+      "dest": "/manifest.webmanifest",
+      "headers": { "Content-Type": "application/manifest+json" }
+    },
+    {
+      "src": "/workbox-(.*)",
+      "dest": "/workbox-$1"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/icons/(.*)",
+      "dest": "/icons/$1"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/index.html"
+      "dest": "/index.html"
     }
   ]
 }
